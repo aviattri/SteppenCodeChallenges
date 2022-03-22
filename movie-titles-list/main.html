@@ -7,7 +7,17 @@
       //
       // TODO: Implement this function.
       //
-      const getMovieList = () => {}
+      const getMovieList = (year) => {
+        return Promise.resolve(
+          fetch(`https://jsonmock.hackerrank.com/api/movies?Year=${year}`)
+              .then(response => response.json())
+              .then(data => {
+                let movieData = data.data;
+                let movieTitles = [];
+                movieData.map((item, index)=> movieTitles.push(item.Title));
+                return movieTitles.sort();
+              }));  
+      }
     </script>
   </head>
 
