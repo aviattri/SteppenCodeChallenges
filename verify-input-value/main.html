@@ -9,15 +9,16 @@
       //
       const makeInputVerifier = (minimum, maximum) => {
         return (inputValue) => {
-          if(minimum <= maximum) {
-            if(inputValue < minimum)
-              return "Input is less than minimum value"
-            if(inputValue > maximum)
-              return "Input is more than maximum value"
-            if(inputValue >= minimum && inputValue <= maximum)
-              return "Input is in range"
-          }
-            return "ERROR" 
+            if(minimum >= maximum)
+              return "ERROR"
+            switch(true){
+                case (inputValue < minimum):
+                  return "Input is less than minimum value"
+                case (inputValue > maximum):
+                  return "Input is more than maximum value"  
+                default:
+                  return "Input is in range"   
+            }
         }
       }
     </script>
