@@ -7,7 +7,29 @@
       //
       // TODO: Implement this function.
       //
-      const transformObject = () => {}
+      const transformObject = (input) => {
+        const isFloat = (value) => {return !isNaN(value)};
+        var objects = {};
+        Object.keys(input).forEach(
+          function(key) {
+            if (Array.isArray(input[key])){
+              const newArr = input[key].map((element, index) => {
+                return isFloat(element) ? element + 6 : element + " BLARGH"
+              });
+              objects = {...objects, [key] : newArr};
+            }
+            else if (typeof input[key] === 'object'){
+                let obj = input[key];
+                let newObj = {}
+                Object.keys(obj).forEach(x =>
+                  newObj = isFloat(obj[x]) ?  {...newObj, [x] :obj[x] + 6 } :  {...newObj, [x]: obj[x] + " BLARGH"});
+                objects = {...objects, [key] :newObj};
+            } else 
+              objects = isFloat(input[key]) ? {...objects, [key] :input[key] + 6 } :  objects = {...objects, [key]: input[key] + " BLARGH"};
+          }
+        );
+        return objects
+      }
     </script>
   </head>
 
